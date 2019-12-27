@@ -4,69 +4,24 @@
 # цикл сколько ингридиентов и берем из каждой сплитом
 
 cook_book = {}
-y = []
+
 def get_shop_list_by_dishes(dishes, person_count):
     list_ingridients = {}
-    list_1 = {}
-    para = {}
-    for ingridient in cook_book[dishes]:
-        # print(ingridient)
-        # ingridient['quantity'] = ingridient['quantity'] * person_count
-        name_ing = ingridient['ingridient_name']
-        count_ingrid = ingridient['quantity'] * person_count
-        ingridient['quantity'] = count_ingrid
+    for dish in dishes:
+        list_one_dish_ingridients = cook_book[dish] #получил список из ингридиентов блюда
+        for ing_1 in list_one_dish_ingridients:
+            # print(ing_1)
+            ing_1['quantity'] = int(ing_1['quantity'] * person_count)
+            # print(ing_1)
+            list_all_ing = list(list_ingridients.keys())
+            if list_all_ing.count(ing_1['ingridient_name']) == 0:
 
-        list_ingridients.update(ingridient)
-        list_ingridients.pop('ingridient_name')
-        # print(list_ingridients)
-        para = dict.fromkeys([name_ing], list_ingridients)
-        # print(para)
-        list_1.update(para)
-        print(list_1)
-        # list_ingridients.clear()
-        # list_ingridients['quantity'] = ingridients_['quantity'] * person_count
-        # print(list_ingridients)
-        # list_1.update[list_ingridients]
-    # print(list_1)
-    # try:
-    # except KeyError:
-    #     h.popitem(ingridient_1)
+                list_ingridients[ing_1['ingridient_name']] = {'measure': ing_1['measure'], 'quantity': int(ing_1['quantity'])}
 
+            else:
+                list_ingridients[ing_1['ingridient_name']]['quantity'] = ing_1['quantity'] + list_ingridients[ing_1['ingridient_name']]['quantity']
+    return list_ingridients
 
-
-    # def list_ingrid(dish1):
-
-            # current_ingrid = list(list_1.keys())
-            # print(list_ingridients)
-            # print(current_ingrid)
-            # print(ingridients_['ingridient_name'])
-            # print(current_ingrid.count(ingridients_['ingridient_name']))
-            # print(ingridients_['quantity'])
-            # if current_ingrid.count(ingridients_['ingridient_name']) == 0:
-            #     list_ingridients['quantity'] = ingridients_['quantity'] * person_count
-            # else:
-            #     new_list_quantity = list_1[ingridients_['ingridient_name']]
-            #
-            #     print(new_list_quantity, ingridients_['ingridient_name'])
-            #     print(list_1)
-
-                # print(t1)
-                # print(ingridients_['quantity'])
-
-                # new_list_quantity['quantity'].update(new_list_quantity['quantity'] + (ingridients_['quantity'] * person_count))
-                # print(t1)
-
-                # list_1[ingridients_['ingridient_name']].update(new_list_quantity)
-
-            # print(ingridients_['ingridient_name'])
-            # list_1[ingridients_['ingridient_name']] = list_ingridients
-            # print(list_1)
-    # if type(dishes) == type(y):
-    #     for dish in dishes:
-    #         list_ingrid(dish)
-    # else:
-    #     list_ingrid(dishes)
-    # return list_1
 
 with open('recipes.txt', encoding='utf8') as f:
     while True:
@@ -85,11 +40,14 @@ with open('recipes.txt', encoding='utf8') as f:
             f.readline()
         except (EOFError, ValueError):
             break
+
     # for x in cook_book:
     #     print(x)
     #     for y in cook_book[x]:
     #         print(y)
-print(get_shop_list_by_dishes('Омлет', 2))
+    # print(cook_book)
+
+print(get_shop_list_by_dishes(['Омлет', 'Фахитос'], 2))
 
 
 
