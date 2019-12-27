@@ -8,7 +8,7 @@ def polish_calc(data1):
         assert oper1 in ["+", "-", "/", "*"]
     except (ValueError, AssertionError):
         print("Неизвестная операция или введены не числа")
-        return ""
+        return
     if oper1 == "+":
         return a + b
     elif oper1 == "-":
