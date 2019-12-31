@@ -17,10 +17,10 @@ def get_shop_list_by_dishes(dishes, person_count):
             if list_all_ing.count(ing_1['ingridient_name']) == 0:
 
                 list_ingridients[ing_1['ingridient_name']] = {'measure': ing_1['measure'], 'quantity': int(ing_1['quantity'] * person_count)}
-                print(f'Прямой {list_ingridients}')
+                # print(f'Прямой {list_ingridients}')
             else:
                 list_ingridients[ing_1['ingridient_name']]['quantity'] = (ing_1['quantity'] * person_count) + list_ingridients[ing_1['ingridient_name']]['quantity']
-                print(f'после еслз {list_ingridients}')
+                # print(f'после еслз {list_ingridients}')
 
     return list_ingridients
 
