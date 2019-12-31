@@ -10,16 +10,18 @@ def get_shop_list_by_dishes(dishes, person_count):
     for dish in dishes:
         list_one_dish_ingridients = cook_book[dish] #получил список из ингридиентов блюда
         for ing_1 in list_one_dish_ingridients:
-            # print(ing_1)
-            ing_1['quantity'] = int(ing_1['quantity'] * person_count)
+            # print(f'Первыйй {ing_1}')
+            # ing_1['quantity'] = ing_1['quantity'] * person_count
             # print(ing_1)
             list_all_ing = list(list_ingridients.keys())
             if list_all_ing.count(ing_1['ingridient_name']) == 0:
 
-                list_ingridients[ing_1['ingridient_name']] = {'measure': ing_1['measure'], 'quantity': int(ing_1['quantity'])}
-
+                list_ingridients[ing_1['ingridient_name']] = {'measure': ing_1['measure'], 'quantity': int(ing_1['quantity'] * person_count)}
+                print(f'Прямой {list_ingridients}')
             else:
-                list_ingridients[ing_1['ingridient_name']]['quantity'] = ing_1['quantity'] + list_ingridients[ing_1['ingridient_name']]['quantity']
+                list_ingridients[ing_1['ingridient_name']]['quantity'] = (ing_1['quantity'] * person_count) + list_ingridients[ing_1['ingridient_name']]['quantity']
+                print(f'после еслз {list_ingridients}')
+
     return list_ingridients
 
 
@@ -47,7 +49,7 @@ with open('recipes.txt', encoding='utf8') as f:
     #         print(y)
     # print(cook_book)
 
-print(get_shop_list_by_dishes(['Омлет', 'Фахитос'], 2))
+print(get_shop_list_by_dishes(['Омлет', 'Омлет'], 2))
 
 
 
