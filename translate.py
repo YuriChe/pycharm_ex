@@ -24,8 +24,7 @@ def translate_ya(url_what, url_result, lang_text, lang_to= 'ru'):
                 file_out.write(translate_line(line_to_translate, lang_to_translate) + '\n')
             else:
                 file_out.write('' + '\n')
-    status_of = True
-    return status_of
+  
 
 translate_ya('DE.txt', 'DE-RU.txt', 'de')
 translate_ya('ES.txt', 'ES-RU.txt', 'es')
